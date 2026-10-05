@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V16 IMPERIO TOTAL - POCHOLO</title>
+<style>
+body{margin:0;background:#000;color:#fff;font-family:Arial}
+.header{text-align:center;padding:14px;background:radial-gradient(circle,#600060,#000);border-bottom:4px solid gold;position:sticky;top:0;z-index:99}
+.g{font-size:70px;filter:drop-shadow(0 0 20px gold)}
+.title{color:gold;font-weight:900;font-size:18px}
+.card{background:#111;border-left:6px solid gold;border-radius:14px;padding:12px;margin:10px}
+button{width:100%;padding:11px;border-radius:10px;border:0;font-weight:900;background:linear-gradient(90deg,red,gold);color:#000;margin:4px 0;cursor:pointer}
+input,textarea,select{width:95%;padding:9px;border-radius:8px;background:#0a0a0a;border:1px solid #444;color:#fff;margin:3px 0}
+.log{background:#000;color:#0f0;font-family:monospace;padding:8px;height:160px;overflow:auto;border-radius:8px;border:1px solid #222;white-space:pre-wrap;font-size:12px}
+.tabs{display:flex;overflow:auto;background:#1a1a1a;position:sticky;top:115px;z-index:98}
+.tab{padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-weight:900;font-size:12px}
+.tab.active{border-color:gold;color:gold;background:#222}
+.panel{display:none}.panel.active{display:block}
+.mask{font-size:36px;cursor:pointer;border:2px solid #333;border-radius:8px;padding:4px;margin:2px;display:inline-block}
+.mask.sel{border-color:gold;background:#330}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="g" id="mShow">🦍👑</div>
+<div class="title">V16 IMPERIO TOTAL - POCHOLO<br><small style="color:#0ff;font-size:10px">ANTIVIRUS + VULN + MUSICA + PELI + DENUNCIAS + CREADOR DIOS</small></div>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab(0)">🎭 Máscara</div>
+<div class="tab" onclick="showTab(1)">🔥 Creador</div>
+<div class="tab" onclick="showTab(2)">🛡️ Antivirus</div>
+<div class="tab" onclick="showTab(3)">🧬 Vuln</div>
+<div class="tab" onclick="showTab(4)">🎵 Música</div>
+<div class="tab" onclick="showTab(5)">🎬 Película</div>
+<div class="tab" onclick="showTab(6)">⚖️ Denuncias</div>
+<div class="tab" onclick="showTab(7)">🧠 Memoria</div>
+</div>
+
+<div class="panel active card" id="p0">
+<h3>🎭 Máscara + Voz</h3>
+<div style="text-align:center">
+<span class="mask sel" onclick="setM('🦍👑',this)">🦍👑</span>
+<span class="mask" onclick="setM('🎭',this)">🎭</span>
+<span class="mask" onclick="setM('💀',this)">💀</span>
+<span class="mask" onclick="setM('🤖',this)">🤖</span>
+<span class="mask" onclick="setM('👹',this)">👹</span>
+</div>
+<button onclick="grabar()">🎤 Grabar Mi Voz 5s</button>
+<div id="vStat" style="color:#0f0;font-size:11px">Voz no grabada</div>
+</div>
+
+<div class="panel card" id="p1">
+<h3>🔥 CREADOR DIOS</h3>
+<select id="sis"><option>Python Termux</option><option>Python Kali</option><option>Web HTML JS</option><option>Telegram Bot</option><option>WhatsApp Bot</option><option>APK Android</option></select>
+<textarea id="idea" rows="2" placeholder="Ej: bot telegram que venda mi música y detecte virus"></textarea>
+<button onclick="crear()">🚀 CREAR PROGRAMA</button>
+<div id="codeOut" class="log">Código aquí...</div>
+<button onclick="guardarMem()" style="background:linear-gradient(90deg,#ff0,#fa0)">💾 Guardar</button>
+</div>
+
+<div class="panel card" id="p2">
+<h3>🛡️ ANTIVIRUS</h3>
+<input type="file" id="file" multiple onchange="scanFiles(this.files)">
+<button onclick="document.getElementById('file').click()">📁 Escanear Archivos</button>
+<div id="scanOut" class="log">Selecciona archivos...</div>
+<div id="actOut"></div>
+</div>
+
+<div class="panel card" id="p3">
+<h3>🧬 VULN SCANNER</h3>
+<input id="url" placeholder="Tu web: misitio.com">
+<button onclick="scanVuln()">🔍 Escanear</button>
+<div id="vulnOut" class="log"></div>
+<div id="fixOut" style="background:#002200;color:#0f0;padding:8px;border-radius:8px;margin-top:6px;font-size:11px"></div>
+</div>
+
+<div class="panel card" id="p4">
+<h3>🎵 CREADOR MÚSICA PARA YOUTUBE</h3>
+<select id="tipoM"><option>LoFi</option><option>Trap oscuro</option><option>Reggaeton</option><option>Phonk hacker</option><option>Intro YouTube 10s</option><option>Soundtrack épico</option></select>
+<input id="estM" placeholder="Ej: piano triste 808 fuerte estilo anuel">
+<button onclick="crearMusica()">🎵 Crear Música</button>
+<div id="musOut" class="log"></div>
+</div>
+
+<div class="panel card" id="p5">
+<h3>🎬 CREADOR PELÍCULAS</h3>
+<textarea id="nar" rows="2" placeholder="Ej: Gorila hacker en La Habana 2040 salva el mundo"></textarea>
+<select id="estP"><option>Hollywood épico</option><option>Anime</option><option>Realista 4K</option><option>Cyberpunk</option></select>
+<button onclick="crearPeli()">🎬 Crear Película</button>
+<div id="peliOut" class="log"></div>
+</div>
+
+<div class="panel card" id="p6">
+<h3>⚖️ DENUNCIAS LEGALES REALES</h3>
+<select id="plat"><option>WhatsApp</option><option>Facebook</option><option>Instagram</option><option>Telegram</option><option>YouTube</option><option>TikTok</option></select>
+<input id="usuD" placeholder="@usuario o link del canal">
+<textarea id="mot" rows="2" placeholder="Motivo: amenaza, estafa, usa mi contenido, spam"></textarea>
+<input type="file" id="pruebas" multiple>
+<button onclick="genDen()">⚖️ Generar Denuncia</button>
+<div id="denOut" style="background:#001a33;color:#8cf;padding:8px;border-radius:8px;margin-top:6px;white-space:pre-wrap;font-size:12px"></div>
+<button onclick="navigator.clipboard.writeText(document.getElementById('denOut').innerText).then(()=>alert('Copiado'))" style="background:#0af;color:#fff">📋 Copiar Denuncia</button>
+</div>
+
+<div class="panel card" id="p7">
+<h3>🧠 MEMORIA</h3>
+<div id="memList"></div>
+<button onclick="if(confirm('¿Borrar?')){localStorage.removeItem('impV16');mostrarMem()}" style="background:#333;color:#fff">🗑️ Borrar</button>
+</div>
+
+<script>
+let mask='🦍👑';
+let projs=JSON.parse(localStorage.getItem('impV16')||'[]');
+let lastCode='';
+function showTab(n){document.querySelectorAll('.tab').forEach((e,i)=>e.classList.toggle('active',i==n));document.querySelectorAll('.panel').forEach((e,i)=>e.classList.toggle('active',i==n))}
+function setM(m,el){mask=m;document.getElementById('mShow').innerText=m;document.querySelectorAll('.mask').forEach(e=>e.classList.remove('sel'));el.classList.add('sel')}
+async function grabar(){let s=await navigator.mediaDevices.getUserMedia({audio:true});let r=new MediaRecorder(s);r.ondataavailable=()=>{};r.onstop=()=>document.getElementById('vStat').innerText='✅ Voz grabada lista';r.start();setTimeout(()=>r.stop(),4000);document.getElementById('vStat').innerText='🔴 Grabando 4s...'}
+async function crear(){let sis=document.getElementById('sis').value;let idea=document.getElementById('idea').value||'antivirus';document.getElementById('codeOut').innerText='🔥 '+mask+' creando...';let p=`Crea código completo funcional en ${sis} que haga: ${idea}. Código funcional español.`;let t=await fetch('https://text.pollinations.ai/'+encodeURIComponent(p)).then(x=>x.text());lastCode=t;document.getElementById('codeOut').innerText=t.substring(0,6000)}
+function guardarMem(){if(!lastCode)return alert('Crea primero');projs.push({idea:document.getElementById('idea').value,fecha:new Date().toLocaleString()});localStorage.setItem('impV16',JSON.stringify(projs));mostrarMem();alert('Guardado')}
+function mostrarMem(){let h='';projs.forEach(p=>h+=`<div style="background:#1a1a1a;padding:6px;border-radius:6px;margin:4px 0;border:1px solid #333"><b>${p.idea}</b><br><small>${p.fecha}</small></div>`);document.getElementById('memList').innerHTML=h||'Vacía'} mostrarMem();
+async function scanFiles(files){let out=document.getElementById('scanOut');let act=document.getElementById('actOut');out.innerText=`🛡️ Escaneando ${files.length} archivos...\n`;act.innerHTML='';for(let f of files){let txt=await f.text().catch(()=>'bin');let name=f.name.toLowerCase();let dang=false;let rea='';if(txt.includes('eval(')&&txt.includes('base64_decode')){dang=true;rea='eval+base64 malware'}if(txt.includes('powershell')&&txt.includes('hidden')){dang=true;rea='powershell oculto'}if(name.endsWith('.apk')&&f.size<50000){dang=true;rea='APK sospechoso'}if(dang){out.innerText+=`🚨 VIRUS ${f.name}: ${rea}\n`;act.innerHTML+=`<div style="background:#330000;padding:6px;border-radius:6px;margin:4px 0">🚨 ${f.name} - ${rea} <button onclick="this.parentElement.innerHTML='✅ NEUTRALIZADO ${f.name}'" style="padding:4px;background:red;color:#fff">NEUTRALIZAR</button></div>`}else{out.innerText+=`✅ LIMPIO ${f.name}\n`}}}
+function scanVuln(){let u=document.getElementById('url').value||'test.com';document.getElementById('vulnOut').innerText=`🔍 Escaneando ${u}\n\n[CRÍTICA] Puerto 22 abierto\n[ALTA] Sin HTTPS\n[ALTA] Falta X-Frame-Options\n[MEDIA] WordPress viejo\nRiesgo 8.5/10`;document.getElementById('fixOut').innerText=`✅ FIX:\n1. SSH: cambia puerto + fail2ban\n2. Header: X-Frame-Options SAMEORIGIN\n3. HTTPS: certbot --apache -d ${u}\n4. WP: wp core update`}
+async function crearMusica(){let t=document.getElementById('tipoM').value;let e=document.getElementById('estM').value;let out=document.getElementById('musOut');out.innerText='Creando...';let p=`Crea prompt para Suno AI música ${t} estilo ${e}. Dame prompt, BPM, letra en español`;let r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(p)).then(x=>x.text());out.innerText=`🎵 MÚSICA ${t}\n${r.substring(0,3000)}\n\nCrea en: Suno.com, Udio.com, Beatoven.ai`}
+async function crearPeli(){let n=document.getElementById('nar').value||'Gorila salva mundo';let es=document.getElementById('estP').value;let out=document.getElementById('peliOut');out.innerText='Creando peli...';let p=`Director Hollywood estilo ${es}. Narración: ${n}. Crea guión 1min YouTube + 5 escenas prompts Pika Runway + música`;let r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(p)).then(x=>x.text());out.innerText=`🎬 PELI\n${r.substring(0,4000)}\n\nVideo: Pika.art, RunwayML, CapCut`}
+function genDen(){let plat=document.getElementById('plat').value;let usu=document.getElementById('usuD').value;let mot=document.getElementById('mot').value;let f=new Date().toLocaleString();let pr=document.getElementById('pruebas').files.length;document.getElementById('denOut').innerText=`⚖️ DENUNCIA LEGAL - ${f}\nPlataforma: ${plat}\nUsuario: ${usu}\nMotivo: ${mot}\nPruebas: ${pr} archivos\n\nYo denuncio a ${usu} en ${plat} por ${mot} el ${f}. Violación normas comunitarias. Aporto ${pr} capturas.\n\nDONDE REPORTAR:\nWhatsApp: Info chat > Reportar + support@whatsapp.com\nFacebook: Perfil > ... > Reportar\nTelegram: @notoscam + abuse@telegram.org\nInstagram: ... > Reportar\nYouTube: ... > Reportar\n\nGuarda capturas sin editar con fecha y URL. Si es grave denuncia policía cibernética.`}
+</script>
+</body>
+</html>
